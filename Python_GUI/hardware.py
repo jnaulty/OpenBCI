@@ -161,7 +161,13 @@ class EEGSensor(t.HasTraits):
                     logging.warn("Couldn't find a functioning serial port." % (port, str(e)))
 
             else:  # A specific COM port is requested.
-                port = 'COM%d' % self.com_port
+                ## must determine what platform communication is requested from
+                import sys
+                self.platform_id = sys.platform
+                if self.platform_id == 'darwin': #name for Mac os
+                    port = self.com_port
+                else:
+                    port = 'COM%d' % self.com_port # name for Windows os
                 try:
                     self.serial_port = serial.Serial(port, BAUD, timeout=STARTUP_TIMEOUT)
                     if self.serial_port.read(1) == '':
