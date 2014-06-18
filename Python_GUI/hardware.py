@@ -165,7 +165,7 @@ class EEGSensor(t.HasTraits):
                 import sys
                 self.platform_id = sys.platform
                 if self.platform_id == 'darwin': #name for Mac os
-                    port = self.com_port
+                    port = '%r' % self.com_port
                 else:
                     port = 'COM%d' % self.com_port # name for Windows os
                 try:

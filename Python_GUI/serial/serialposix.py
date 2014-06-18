@@ -151,7 +151,7 @@ elif plat[:6] == 'darwin':   # OS X
             raise ValueError("baud rate not supported")
 
     def device(port):
-        return '/dev/cuad%d' % port
+        return '/dev/tty.usbmodem%d' % port
 
     baudrate_constants = {}
 
